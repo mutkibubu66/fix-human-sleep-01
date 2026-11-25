@@ -26,6 +26,8 @@ def get_patch_note() -> str:
 
 
 PATCH_NOTE = get_patch_note()
+# Changelog voice: deadpan one-liner — state the fix flatly and let the
+# absurdity (an autosave for sleep) carry the joke, never explain it.
 
 
 def validate(line: str) -> None:
@@ -39,6 +41,7 @@ def validate(line: str) -> None:
     if not line.strip():
         raise ValueError("entry must not be only whitespace")
     assert "\r" not in line and "\n" not in line, "entry must be a single line"
+    assert line.strip(), "entry must be non-empty after stripping"
     line.encode("utf-8")  # must be valid UTF-8
 
 
